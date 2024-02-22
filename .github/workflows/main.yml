@@ -24,8 +24,7 @@ jobs:
 
     - name: Run Bandit security scan and save result in a variable
       run: |
-        set -o pipefail
-        bandit -r . --exit-zero -f json | tee bandit_results.json
+        bandit -r . --exit-zero -f json | tee bandit_result.json
         result=$(cat bandit_result.json)
         echo "displaying variable now ----- $result"
 
