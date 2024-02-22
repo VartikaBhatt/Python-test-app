@@ -24,13 +24,8 @@ jobs:
 
     - name: Run Bandit security scan
       run: |
-          bandit_output=$(bandit -r .)
-          echo "$bandit_output"
-          if echo "$bandit_output" | grep -q "No issues identified"; then
-            echo "No security issues found."
-          else
-            echo "Security issues found but will not fail the workflow."
-          fi
+          bandit -r . >> result.txt
+          cat result.txt
 
   sbom-scan:
     runs-on: ubuntu-latest
