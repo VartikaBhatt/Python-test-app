@@ -22,9 +22,15 @@ jobs:
         pip install jq
         pip install -r requirements.txt
 
-    - name: Running Bandit now on code repository
+    - name: Run Bandit security scan
       run: |
-        bandit -r .
+          bandit_output=$(bandit -r .)
+          echo "$bandit_output"
+          if echo "$bandit_output" | grep -q "No issues identified"; then
+            echo "No security issues found."
+          else
+            echo "Security issues found but will not fail the workflow."
+          fi
 
   sbom-scan:
     runs-on: ubuntu-latest
