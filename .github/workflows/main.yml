@@ -28,6 +28,10 @@ jobs:
         result=$(cat bandit_result.json)
         echo "displaying variable now ----- $result"
 
+    - name: Evaluating if any high severity issue is present
+      run: |
+        echo "$result | jq '._totals.SEVERITY.HIGH"
+
     - name: Upload Bandit results as artifact
       uses: actions/upload-artifact@v4
       with:
