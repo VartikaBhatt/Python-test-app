@@ -31,7 +31,7 @@ jobs:
     - name: Evaluating if any high severity issue is present
       run: |
         echo "again displaying ----- $result"
-        high_count=$(echo "$result" | jq '.results[] | select(.issue_severity == "UNDEFINED")')
+        high_count=$(echo "$result" | jq '.results[] | select(.issue_severity == "HIGH")')
         if [[ -n "$high_count" ]]; then
           echo "High severity vulnerabilities found >>"
           echo "$high_count"
