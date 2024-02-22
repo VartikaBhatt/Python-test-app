@@ -25,8 +25,8 @@ jobs:
 
     - name: Installing dependencies for running snyk
       run: |
-        python3 -m pip install --upgrade pip
-        pip3 install -r --skip-unresolved requirements.txt
+        python -m pip install --upgrade pip
+        python -m pip install -r --skip-unresolved requirements.txt
         
     - name: Setting up dependency scanning using SNYK for python project
       uses: snyk/actions/python-3.6@master
