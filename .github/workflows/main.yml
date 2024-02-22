@@ -53,7 +53,7 @@ jobs:
     - name: Setting up dependency scanning using SNYK
       run: |
         npm install -g snyk
-        snyk auth ${{ secrets.SNYK_TOKEN }}
+        snyk auth ${{env.SNYK_TOKEN}}
         snyk test --all-projects
         
         
