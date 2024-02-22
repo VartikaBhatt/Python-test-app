@@ -51,7 +51,7 @@ jobs:
         python-version: '3.x'
         
     - name: Setting up dependency scanning using SNYK for python project
-      uses: snyk/actions/python@master
+      uses: snyk/actions/python-3.6@master
       env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
