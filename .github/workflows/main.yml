@@ -25,7 +25,7 @@ jobs:
     - name: Run Bandit security scan
       run: |
           result=$(bandit -r . --exit-zero)
-          echo "$result"
+          echo "---saving bandit results in a variable named result for future processing--- $result"
 
   sbom-scan:
     runs-on: ubuntu-latest
