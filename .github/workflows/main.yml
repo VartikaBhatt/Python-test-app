@@ -31,7 +31,7 @@ jobs:
 
     - name: Evaluating if any high severity issue is present
       run: |
-        echo "${{ steps.bandit_scan.outputs.bandit_scan }}"
+        echo "abcd"
         high_count=$(echo "$result" | jq '.results[] | select(.issue_severity == "HIGH")')
         if [[ -n "$high_count" ]]; then
           echo "High severity vulnerabilities found >>"
