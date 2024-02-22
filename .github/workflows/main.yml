@@ -49,6 +49,8 @@ jobs:
       uses: snyk/actions/python@master
       env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        args: --file=Python-test-app/dsvpwa --json-file-output=snyk_result.json 
         
         
       
