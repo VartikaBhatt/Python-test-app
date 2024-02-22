@@ -27,4 +27,4 @@ jobs:
     - name: Installing dependencies for running snyk
       run: |
         python -m pip install --upgrade pip
-        python -m pip install -r --skip-unresolved requirements.txt
+        python -m pip install -r requirements.txt --skip-unresolved
