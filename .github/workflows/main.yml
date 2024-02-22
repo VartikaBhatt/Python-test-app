@@ -22,15 +22,18 @@ jobs:
         pip install jq
         pip install -r requirements.txt
 
-    - name: Run Bandit security scan
+    - name: Run Bandit security scan and save result in a variable
       run: |
-          result=$(bandit -r . --exit-zero -f json -o bandit_result.json)
-          echo "---saving bandit results in a variable named result for future processing--- $result"
-          
-    - name: Upload Bandit results in artifacts
+        set -o pipefail
+        bandit -r . --exit-zero -f json | tee bandit_results.json
+        result=$(cat bandit_result.json)
+        echo "displaying variable now ----- $result"
+
+    - name: Upload Bandit results as artifact
       uses: actions/upload-artifact@v4
       with:
-        path: result.json
+        name: bandit-results
+        path: bandit_results.json
         
   sbom-scan:
     runs-on: ubuntu-latest
