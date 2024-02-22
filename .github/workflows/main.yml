@@ -24,7 +24,8 @@ jobs:
 
     - name: Run Bandit security scan
       run: |
-          bandit -r . --exit-zero -lll -f json -o bandit_result.json
+          result=$(bandit -r . --exit-zero -lll -f json -o bandit_result.json)
+          echo "$result"
 
   sbom-scan:
     runs-on: ubuntu-latest
