@@ -20,6 +20,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install bandit
         pip install jq
+        pip install -r requirements.txt
 
     - name: Running Bandit now on code repository
       run: |
@@ -49,6 +50,11 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.x'
+
+    - name: Installing dependencies for running snyk
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
         
     - name: Setting up dependency scanning using SNYK for python project
       uses: snyk/actions/python-3.6@master
