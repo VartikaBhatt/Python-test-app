@@ -50,7 +50,7 @@ jobs:
       env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
-        args: --file=Python-test-app/dsvpwa --json-file-output=snyk_result.json 
+        args: --all-projects --json-file-output=snyk_result.json 
         
         
       
