@@ -27,12 +27,12 @@ jobs:
       run: |
         bandit -r . --exit-zero -f json | tee bandit_result.json
         result=$(cat bandit_result.json)
-        echo "::set-output name=bandit_scan_result::$result"
+        echo "::set-output name=bandit_scan::$result"
 
     - name: Evaluating if any high severity issue is present
       run: |
-        temp_result="${{ steps.bandit_scan.outputs.bandit_scan_result }}"
-        high_count=$(echo "$temp_result" | jq '.results[] | select(.issue_severity == "HIGH")')
+        result="${{ steps.bandit_scan.outputs.bandit_scan }}"
+        high_count=$(echo "$result" | jq '.results[] | select(.issue_severity == "HIGH")')
         if [[ -n "$high_count" ]]; then
           echo "High severity vulnerabilities found >>"
           echo "$high_count"
