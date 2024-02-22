@@ -30,7 +30,15 @@ jobs:
 
     - name: Evaluating if any high severity issue is present
       run: |
-        echo "$result | jq '._totals.SEVERITY.HIGH"
+        echo "again displaying ----- $result"
+        high_count=$(echo "$result" | jq '.results[] | select(.issue_severity == "UNDEFINED")')
+        if [[ -n "$high_count" ]]; then
+          echo "High severity vulnerabilities found >>"
+          echo "$high_count"
+          exit 1
+        else
+          echo "No high severity vulnerabilities found."
+        fi
 
     - name: Upload Bandit results as artifact
       uses: actions/upload-artifact@v4
