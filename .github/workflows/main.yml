@@ -29,9 +29,16 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install -r requirements.txt
         
-    - name: Setting up dependency scanning using SNYK for python project
-      uses: snyk/actions/python-3.6@master
-      env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+    - name: Install npm
+      uses: actions/setup-node@v3
       with:
-        args: --json-file-output=snyk_result.json 
+        node-version: '20.x'
+        
+    - name: Setting up dependency scanning using SNYK for python project
+      run: npm install -g snyk
+
+    - name: Authenticate with Snyk
+      run: snyk auth ${{ secrets.SNYK_TOKEN }}
+
+    - name: Run Snyk scan
+      run: snyk test --all-projects 
