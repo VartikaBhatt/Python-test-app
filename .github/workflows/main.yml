@@ -44,7 +44,12 @@ jobs:
     steps:
     - name: checkout repository
       uses: actions/checkout@v3
- 
+      
+    - name: Setting up python 3.0 just to be sure
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+        
     - name: Setting up dependency scanning using SNYK for python project
       uses: snyk/actions/python@master
       env:
