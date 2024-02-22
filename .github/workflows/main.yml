@@ -24,13 +24,13 @@ jobs:
 
     - name: Run Bandit security scan
       run: |
-          result=$(bandit -r . --exit-zero)
-          echo "---saving bandit results in a variable named result for future processing---"
+          result=$(bandit -r . --exit-zero -f json -o bandit_result.json)
+          echo "---saving bandit results in a variable named result for future processing--- $result"
           
     - name: Upload Bandit results in artifacts
       uses: actions/upload-artifact@v4
       with:
-        path: result.txt
+        path: result.json
         
   sbom-scan:
     runs-on: ubuntu-latest
