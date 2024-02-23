@@ -1,7 +1,8 @@
 name: Netskope test demo
 run-name: Python code scan using Bandit
 on:
-  push:
+  pull_request:
+    types: [opened]
 
 jobs:
   code-scan:
